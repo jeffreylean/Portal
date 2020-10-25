@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Calendar";
+    Layout = "_Layout";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card card-primary">
+                <div class="card-body p-0">
+                    <!-- THE CALENDAR -->
+                    <div id="calendar"></div>
+                </div>
+                <!-- /.card-body -->
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+<div id="CreateEventModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Create Event Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Create Event</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="Event">Event Title</label>
+                            <input type="text" class="form-control" id="InputEventTitle" placeholder="Enter Title">
+                        </div>
+                        <div class="form-group">
+                            <label>Date and time range:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                </div>
+                                <input type="text" class="form-control float-right" id="EventTime">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="AddEventBtn" data-dismiss="modal">Add Event</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="EditEventModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Edit Event Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Event</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="Event">Event Title</label>
+                            <input type="text" class="form-control" id="UpdateEventInput" placeholder="Enter Title">
+                        </div>
+                        <div class="form-group">
+                            <label>Date and time range:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                </div>
+                                <input type="text" class="form-control float-right" id="UpdateEventTime">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="UpdateEventBtn" data-dismiss="modal">Update Event</button>
+                <button type="button" class="btn btn-danger" id="DeleteEventBtn" data-dismiss="modal">Delete Event</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
