@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using Portal.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +15,7 @@ using Portal.Context;
 using Portal.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Portal.Models;
 
 namespace Portal
 {
@@ -65,8 +65,35 @@ namespace Portal
             //    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
             //    options.SlidingExpiration = true;
             //});
+
+            //Add Identity registers the services
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                config.Password.RequiredLength = 4;
+                config.Password.RequireDigit = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = false;
+                config.SignIn.RequireConfirmedEmail = false;
+            })
+            .AddEntityFrameworkStores<PortalDbContext>()
+            .AddDefaultTokenProviders();
+
+
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.Cookie.Name = "PortalAuth.Cookie";
+                config.LoginPath = "/Auth/LoginPage";
+                config.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+            });
+
+            //services.AddAuthentication("CookieAuth").AddCookie("CookieAuth", config =>
+            // {
+            //     config.Cookie.Name = "SimpleAuthNAuthZ.Cookie";
+            //     config.LoginPath = "/Auth/LoginPage";
+            //     config.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+            // });
         }
-    
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

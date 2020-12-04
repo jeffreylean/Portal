@@ -2,14 +2,17 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Portal.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Key]
-        public Int64 Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public DateTime? CreateDateTime { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string FirstName { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string LastName { get; set; }
     }
 }

@@ -111,7 +111,7 @@ function BindDatePicker() {
 
 function GetEvent() {
     $.ajax({
-        url: "https://localhost:5001/calendar/GetEventList",
+        url: "/calendar/GetEventList",
         type: "GET",
         success: function (response) {
             console.log(response);
@@ -151,7 +151,7 @@ function CreateEventBtnClick() {
             EndTime: moment.utc(endTime).format()
         }
         $.ajax({
-            url: "https://localhost:5001/calendar/insertnewevent",
+            url: "/calendar/insertnewevent",
             type: 'POST',
             data: JSON.stringify(payload),
             contentType: "application/json; charset=utf-8",
@@ -175,7 +175,7 @@ function UpdateBtnClicked(info) {
             EndTime: moment.utc(endTime).format()
         }
         $.ajax({
-            url: "https://localhost:5001/calendar/UpdateEvent",
+            url: "/calendar/UpdateEvent",
             type: 'PUT',
             data: JSON.stringify(payload),
             contentType: "application/json; charset=utf-8",
@@ -198,7 +198,7 @@ function DeleteBtnClicked(info) {
             Id: parseInt(info.event.id)
         }
         $.ajax({
-            url: "https://localhost:5001/calendar/DeleteEvent",
+            url: "/calendar/DeleteEvent",
             type: 'DELETE',
             data: JSON.stringify(payload),
             contentType: "application/json; charset=utf-8",
